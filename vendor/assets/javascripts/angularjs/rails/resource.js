@@ -256,14 +256,16 @@
             };
 
             RailsResource.prototype.create = function () {
+                json = this.asJson ? this.asJson() : this
                 // clone so we can manipulate w/o modifying our instance
-                var data = RailsResource.transformData(angular.copy(this, {}));
+                var data = RailsResource.transformData(angular.copy(json, {}));
                 return this.processResponse($http.post(RailsResource.resourceUrl(this), data, RailsResource.getHttpConfig()));
             };
 
             RailsResource.prototype.update = function () {
+                json = this.asJson ? this.asJson() : this
                 // clone so we can manipulate w/o modifying our instance
-                var data = RailsResource.transformData(angular.copy(this, {}));
+                var data = RailsResource.transformData(angular.copy(json, {}));
                 return this.processResponse($http.put(RailsResource.resourceUrl(this), data, RailsResource.getHttpConfig()));
             };
 
